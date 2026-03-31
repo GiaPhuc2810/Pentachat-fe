@@ -1,0 +1,317 @@
+      .nav-tabs .nav-link {
+        color: var(--text-secondary);
+        border: none;
+        border-bottom: 2px solid transparent;
+      }
+
+      .nav-tabs .nav-link:hover {
+        border-bottom-color: var(--border-color);
+      }
+
+      .nav-tabs .nav-link.active {
+        color: var(--primary-color);
+        border-bottom-color: var(--primary-color);
+        font-weight: 600;
+      }
+
+      .btn-group .btn {
+        padding: 0.375rem 0.75rem;
+      }
+
+      .btn-close {
+        background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+        border: 0;
+        opacity: .5;
+      }
+
+      /* Friend Cards */
+      .friend-card {
+        transition: all 0.3s;
+        border: 1px solid var(--border-color);
+      }
+
+      .friend-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .friend-avatar-large {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 600;
+        position: relative;
+      }
+
+      .input-group-text {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+      }
+
+      /* Call Modal Styles */
+      .call-modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .call-modal-overlay.show {
+        opacity: 1;
+      }
+
+      .call-modal-dialog {
+        max-width: 500px;
+        width: 90%;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+      }
+
+      .call-modal-overlay.show .call-modal-dialog {
+        transform: scale(1);
+      }
+
+      .call-modal-content {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+      }
+
+      .call-modal-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid #e9ecef;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .call-modal-title {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .call-close-btn {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.2s;
+      }
+
+      .call-close-btn:hover {
+        opacity: 1;
+      }
+
+      .call-modal-body {
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .call-modal-body .avatar-large {
+        width: 8rem;
+        height: 8rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+      .call-avatar-wrapper {
+        position: relative;
+        width: 8rem;
+        height: 8rem;
+        --voice-level: 0;
+      }
+
+      .call-avatar-wrapper .avatar-large {
+        position: relative;
+        z-index: 2;
+      }
+
+      .call-voice-ring {
+        position: absolute;
+        inset: -10px;
+        border-radius: 50%;
+        border: 2px solid rgba(102, 126, 234, 0.35);
+        transform: scale(calc(1 + (var(--voice-level) * 0.22)));
+        opacity: calc(0.2 + var(--voice-level));
+        transition: transform 110ms ease-out, opacity 110ms ease-out;
+      }
+
+      .call-avatar-wrapper.is-speaking .call-voice-ring {
+        border-color: rgba(35, 191, 125, 0.8);
+        box-shadow: 0 0 calc(20px + (var(--voice-level) * 18px)) rgba(35, 191, 125, 0.45);
+      }
+
+      .call-voice-bars {
+        height: 26px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .call-voice-bars span {
+        width: 4px;
+        height: 22px;
+        border-radius: 999px;
+        transform-origin: bottom;
+        transform: scaleY(var(--bar-level, 0.16));
+        background: linear-gradient(180deg, #4f9cff 0%, #52d6a1 100%);
+        transition: transform 100ms linear, opacity 120ms ease-out;
+        opacity: 0.35;
+      }
+
+      .call-voice-bars.is-speaking span {
+        opacity: 0.95;
+      }
+
+      .call-btn {
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0.5rem;
+        transition: all 0.3s;
+        border: 2px solid;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      .call-btn:hover {
+        transform: scale(1.1);
+      }
+
+      .call-btn-secondary {
+        background: white;
+        border-color: #6c757d;
+        color: #6c757d;
+      }
+
+      .call-btn-secondary:hover {
+        background: #6c757d;
+        color: white;
+      }
+
+      .call-btn-danger {
+        background: #dc3545;
+        border-color: #dc3545;
+        color: white;
+      }
+
+      .call-btn-danger:hover {
+        background: #c82333;
+        border-color: #bd2130;
+      }
+
+      #call-username {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      #call-status {
+        font-size: 0.95rem;
+        color: #6c757d;
+      }
+
+      /* Incoming Call Modal Styles */
+      .incoming-call-icon {
+        font-size: 3rem;
+        color: #28a745;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      .incoming-call-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+
+      .call-btn-large {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .call-btn-large i {
+        font-size: 2rem;
+      }
+
+      .call-btn-large span {
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+
+      .call-btn-success {
+        background: #28a745;
+        border-color: #28a745;
+        color: white;
+      }
+
+      .call-btn-success:hover {
+        background: #218838;
+        border-color: #1e7e34;
+        transform: scale(1.1);
+      }
+
+      #incoming-call-modal .call-modal-body {
+        padding: 3rem 2rem;
+      }
+
+      #incoming-call-modal .avatar-large {
+        width: 6rem;
+        height: 6rem;
+        font-size: 2.5rem;
+      }
+
+      #incoming-caller-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
