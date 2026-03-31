@@ -58,12 +58,12 @@ export const API_CONFIG = {
 
         // Wallet
         WALLET: {
-            BALANCE: '/api/finance/balance',
-            DEPOSIT: '/api/finance/deposit',
-            WITHDRAW: '/api/finance/withdraw',
-            TRANSFER: '/api/finance/transfer',
-            TRANSACTIONS: '/api/finance/transactions',
-            REDEEM_CARD: '/api/finance/redeem-card' 
+            BALANCE: '/api/wallets/balance',
+            DEPOSIT: '/api/wallets/deposit',
+            WITHDRAW: '/api/wallets/withdraw',
+            TRANSFER: '/api/wallets/transfer',
+            TRANSACTIONS: '/api/wallets/transactions',
+            REDEEM_CARD: '/api/wallets/redeem-card' 
         },
 
         // Games

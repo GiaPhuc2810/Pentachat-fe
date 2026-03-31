@@ -804,6 +804,13 @@ async function ensurePokerSocket() {
   if (!session) return;
 
   await websocketService.connect();
+  
+  // Kiểm tra lại xem kết nối đã thực sự sẵn sàng
+  if (!websocketService.isConnected()) {
+    console.error('WebSocket not connected after connect() call');
+    return;
+  }
+
   const nextInviteTopic = `/topic/poker-invites.${session.userId}`;
   if (pokerInviteTopic !== nextInviteTopic) {
     if (pokerInviteTopic) {
@@ -877,6 +884,13 @@ function subscribeToPokerRoom(roomId) {
   if (pokerRoomTopic && pokerRoomTopic !== nextRoomTopic) {
     websocketService.unsubscribe(pokerRoomTopic);
   }
+  
+  // Kiểm tra lại xem kết nối đã thực sự sẵn sàng trước khi subscribe
+  if (!websocketService.isConnected()) {
+    console.warn('WebSocket not connected in subscribeToPokerRoom, skipping subscription');
+    return;
+  }
+  
   websocketService.subscribe(nextRoomTopic, (payload) => {
     if (payload?.status === 'CLOSED' && !payload?.members) {
       pokerRoom = null;

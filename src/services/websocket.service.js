@@ -148,16 +148,21 @@ class WebSocketService {
      * @param {Function} callback
      */
     subscribeToMessages(userId, callback) {
+        const topic = `/topic/messages/${userId}`;
+        
         if (!this.connected) {
             this.connect().then(() => {
-                this.subscribe(`/topic/messages/${userId}`, callback);
+                // Sau khi connect, ensure client đã sẵn sàng trước khi subscribe
+                if (this.client && this.connected) {
+                    this.subscribe(topic, callback);
+                }
             }).catch(err => {
                 console.error('Failed to connect to WebSocket:', err);
             });
             return;
         }
 
-        this.subscribe(`/topic/messages/${userId}`, callback);
+        this.subscribe(topic, callback);
     }
 
     /**
@@ -166,7 +171,21 @@ class WebSocketService {
      * @param {Function} callback
      */
     subscribeToAudioCalls(userId, callback) {
-        return this.subscribe(`/topic/call.audio.${userId}`, callback);
+        const topic = `/topic/call.audio.${userId}`;
+        
+        if (!this.connected) {
+            this.connect().then(() => {
+                // Sau khi connect, ensure client đã sẵn sàng trước khi subscribe
+                if (this.client && this.connected) {
+                    this.subscribe(topic, callback);
+                }
+            }).catch(err => {
+                console.error('Failed to connect to WebSocket:', err);
+            });
+            return;
+        }
+
+        return this.subscribe(topic, callback);
     }
 
     /**

@@ -38,10 +38,13 @@ class CallService {
             console.log('WebSocket not connected, connecting...');
             websocketService.connect().then(() => {
                 console.log('WebSocket connected, subscribing to call signals...');
-                websocketService.subscribe(destination, (message) => {
-                    console.log('Call signal received:', message);
-                    this.handleCallSignal(message);
-                });
+                // Kiểm tra lại xem kết nối đã thực sự sẵn sàng
+                if (websocketService.isConnected()) {
+                    websocketService.subscribe(destination, (message) => {
+                        console.log('Call signal received:', message);
+                        this.handleCallSignal(message);
+                    });
+                }
             }).catch(err => {
                 console.error('Failed to connect WebSocket:', err);
             });
